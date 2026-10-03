@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c8xr0rjd6kx2n"]
+[gd_scene load_steps=26 format=3 uid="uid://c8xr0rjd6kx2n"]
 
 [ext_resource type="PackedScene" uid="uid://c7jjq36aagcfr" path="res://character_body_3d.tscn" id="1_bsq1j"]
 [ext_resource type="Texture2D" uid="uid://b8hb6r6tle2id" path="res://img/Yar/Zakaznik_Yar_map4.png" id="2_ea2dl"]
@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://im6q2hs1pqvp" path="res://FBX/path_segment.glb" id="10_vtbal"]
 [ext_resource type="PackedScene" uid="uid://bfxl28hqbv0jq" path="res://FBX/Space ship.glb" id="13_23rb8"]
 [ext_resource type="Script" path="res://SceneController.gd" id="14_u57c4"]
+[ext_resource type="Texture2D" uid="uid://dr4m1cynmpn66" path="res://img/cloud2.png" id="15_8gxw1"]
+[ext_resource type="AudioStream" uid="uid://cph1olqg1kfp2" path="res://sound/forest-lark-and-european-robin-at-the-stream.mp3" id="16_oxxif"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b0y2d"]
 size = Vector3(300, 1, 300)
@@ -52,6 +54,7 @@ size = Vector3(5.17097, 2.75692, 0.648559)
 [node name="Location" type="Node3D"]
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("1_bsq1j")]
+transform = Transform3D(0.707106, 0, 0.707106, 0, 1, 0, -0.707106, 0, 0.707106, -8.88732, 1.6, 7.07931)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
@@ -8197,13 +8200,44 @@ transform = Transform3D(-0.183317, 0, 0.983054, 0, 1, 0, -0.983054, 0, -0.183317
 transform = Transform3D(0.193464, 0, -0.981107, 0, 1, 0, 0.981107, 0, 0.193464, -32.148, 0.500001, -19.8809)
 
 [node name="Space ship" parent="." instance=ExtResource("13_23rb8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.504897, 146.083, 2.88193)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.504897, 170.007, 2.88193)
 
 [node name="CinematicCamera" type="Camera3D" parent="Space ship"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.504897, 21.9872, -2.88193)
+transform = Transform3D(1, 0, 0, 0, 0.135041, 0.99084, 0, -0.99084, 0.135041, 3.57261, 9.48793, 4.377)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Space ship"]
+transform = Transform3D(1, 0, 0, 0, -0.100205, 0.994967, 0, -0.994967, -0.100205, 2.10531, 5.23776, -0.575971)
+light_energy = 16.0
+light_indirect_energy = 2.91
+light_volumetric_fog_energy = 2.313
+spot_range = 9.07286
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="Space ship"]
+transform = Transform3D(1, 0, 0, 0, 0.0284624, -0.999595, 0, 0.999595, 0.0284624, 0, -2.54756, -0.575971)
+light_energy = 16.0
+light_indirect_energy = 2.91
+light_volumetric_fog_energy = 2.313
+spot_range = 9.77818
+spot_angle = 56.3319
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Space ship"]
+transform = Transform3D(1, 0, 0, 0, -0.896076, 0.4439, 0, -0.4439, -0.896076, -1.05285, 3.65048, -5.23575)
+light_energy = 16.0
+light_indirect_energy = 2.91
+light_volumetric_fog_energy = 2.313
+spot_range = 12.8747
+spot_angle = 33.0813
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="Space ship"]
+transform = Transform3D(1, 0, 0, 0, 0.712173, 0.702004, 0, -0.702004, 0.712173, -1.05285, 3.65048, 4.88528)
+light_energy = 16.0
+light_indirect_energy = 2.91
+light_volumetric_fog_energy = 2.313
+spot_range = 13.8483
+spot_angle = 48.299
 
 [node name="Marker3D_LandingPoint" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.45752, 0.936934, 14.9076)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.45752, 2.03167, 14.9076)
 
 [node name="SceneController" type="Node3D" parent="." node_paths=PackedStringArray("ship", "cinematic_camera", "landing_point", "player")]
 script = ExtResource("14_u57c4")
@@ -8212,6 +8246,36 @@ cinematic_camera = NodePath("../Space ship/CinematicCamera")
 landing_point = NodePath("../Marker3D_LandingPoint")
 player = NodePath("../CharacterBody3D")
 speed = 30.0
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(31.6257, 0, 0, 0, -1.71043e-06, -5.29957, 0, 39.13, -2.31651e-07, 11.8616, 133.03, 24.5057)
+modulate = Color(1, 1, 1, 0.47451)
+texture = ExtResource("15_8gxw1")
+
+[node name="Sprite3D2" type="Sprite3D" parent="."]
+transform = Transform3D(31.6257, 0, 0, 0, -1.71043e-06, -5.29957, 0, 39.13, -2.31651e-07, 11.8616, 56.9201, -150.709)
+modulate = Color(1, 1, 1, 0.47451)
+texture = ExtResource("15_8gxw1")
+
+[node name="Sprite3D3" type="Sprite3D" parent="."]
+transform = Transform3D(4.94298, 38.6491, -2.28805e-07, 0, -1.71043e-06, -5.29957, -31.237, 6.11589, -3.62063e-08, 115.867, 46.6747, 6.27374)
+modulate = Color(1, 1, 1, 0.47451)
+texture = ExtResource("15_8gxw1")
+
+[node name="Sprite3D4" type="Sprite3D" parent="."]
+transform = Transform3D(4.94298, 38.6491, -2.28805e-07, 0, -1.71043e-06, -5.29957, -31.237, 6.11589, -3.62063e-08, -120.475, 56.9201, -8.65431)
+modulate = Color(1, 1, 1, 0.47451)
+texture = ExtResource("15_8gxw1")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -69)
+stream = ExtResource("16_oxxif")
+autoplay = true
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -121.277, -7.62939e-06, 7.22644)
+stream = ExtResource("16_oxxif")
+autoplay = true
 
 [connection signal="input_event" from="bench/Area3D_clothes" to="bench/Area3D_clothes" method="_on_input_event"]
 [connection signal="mouse_entered" from="bench/Area3D_clothes" to="bench/Area3D_clothes" method="_on_mouse_entered"]
