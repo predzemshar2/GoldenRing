@@ -10,7 +10,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 func _ready()->void:
 #	Input.mouse_mode=Input.MOUSE_MODE_CAPTURED
 	$Camera3D/CanvasLayer/Label.text=""
-	
+	PanelInventory.visible=false
 var sensitivity = 0.005  # Чувствительность мыши
 @onready var camera = $Camera3D
 func _input(event):

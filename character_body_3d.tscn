@@ -49,7 +49,6 @@ icon = ExtResource("2_kefic")
 expand_icon = true
 
 [node name="PanelInventory" type="Panel" parent="Camera3D/CanvasLayer"]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
