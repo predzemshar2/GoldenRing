@@ -6,7 +6,7 @@ const JUMP_VELOCITY = 4.5
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var PanelInventory = $Camera3D/CanvasLayer/PanelInventory
-
+@onready var cam = $Camera3D
 func _ready()->void:
 #	Input.mouse_mode=Input.MOUSE_MODE_CAPTURED
 	$Camera3D/CanvasLayer/Label.text=""

@@ -8203,7 +8203,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.504897, 146.083, 2.88193)
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.504897, 21.9872, -2.88193)
 
 [node name="Marker3D_LandingPoint" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.45752, 0.936934, 14.9076)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.31164, 0.936934, 5.83945)
 
 [node name="SceneController" type="Node3D" parent="." node_paths=PackedStringArray("ship", "cinematic_camera", "landing_point", "player")]
 script = ExtResource("14_u57c4")
