@@ -1,0 +1,113 @@
+[gd_scene load_steps=16 format=3 uid="uid://dsj3yo6th8vy4"]
+
+[ext_resource type="Script" path="res://World.gd" id="1_23l3t"]
+[ext_resource type="Texture2D" uid="uid://bbjmvl2lyn65g" path="res://img/sun.webp" id="2_4h8ui"]
+[ext_resource type="Texture2D" uid="uid://dobayystaxxck" path="res://img/merk.webp" id="3_addyf"]
+[ext_resource type="Texture2D" uid="uid://bgs3vr7sp8u8a" path="res://img/earth.webp" id="4_st5qc"]
+[ext_resource type="Texture2D" uid="uid://b3kwufxvd832p" path="res://img/sky.webp" id="6_b34nn"]
+[ext_resource type="Texture2D" uid="uid://chhfoylg3eq0h" path="res://panel.webp" id="6_qljj1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5jylj"]
+albedo_texture = ExtResource("2_4h8ui")
+emission_enabled = true
+emission = Color(0.717647, 0.862745, 0.239216, 1)
+emission_energy_multiplier = 0.61
+emission_texture = ExtResource("2_4h8ui")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qw5bv"]
+emission_shape = 1
+emission_sphere_radius = 0.5
+spread = 83.41
+gravity = Vector3(0, 0, 0)
+color = Color(1, 1, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_oo05f"]
+radius = 0.05
+height = 0.1
+radial_segments = 5
+rings = 5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_igkdd"]
+albedo_texture = ExtResource("3_addyf")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hgesu"]
+albedo_texture = ExtResource("4_st5qc")
+emission = Color(0, 0.396078, 0, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_w8fsi"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_2beog"]
+panorama = ExtResource("6_b34nn")
+
+[sub_resource type="Sky" id="Sky_llp3r"]
+sky_material = SubResource("PanoramaSkyMaterial_2beog")
+
+[sub_resource type="Environment" id="Environment_35ox0"]
+background_mode = 2
+background_energy_multiplier = 0.14
+sky = SubResource("Sky_llp3r")
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_23l3t")
+
+[node name="Sun" type="CSGSphere3D" parent="."]
+material_override = SubResource("StandardMaterial3D_5jylj")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Sun"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Sun"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0581319, 0, 0)
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_qw5bv")
+draw_pass_1 = SubResource("SphereMesh_oo05f")
+
+[node name="Mercury" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.64158, 0, 0)
+material_override = SubResource("StandardMaterial3D_igkdd")
+radius = 0.2
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.08209, 4.74767)
+
+[node name="Venera" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+
+[node name="Earth" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.69112, 0, -1.72553)
+material_override = SubResource("StandardMaterial3D_hgesu")
+
+[node name="Area3D" type="Area3D" parent="Earth"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Earth/Area3D"]
+shape = SubResource("SphereShape3D_w8fsi")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -244.0
+offset_top = -139.0
+offset_right = 254.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 76
+text = "Наш корабль сломался.
+Требуется экстренная посадка.
+Выберите планету."
+horizontal_alignment = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_35ox0")
+
+[node name="Panel" type="Sprite2D" parent="."]
+position = Vector2(573, 443)
+scale = Vector2(1.87838, 2.1432)
+texture = ExtResource("6_qljj1")
+
+[connection signal="input_event" from="Earth/Area3D" to="." method="_on_area_3d_input_event"]
+[connection signal="mouse_entered" from="Earth/Area3D" to="." method="_on_area_3d_mouse_entered"]
+[connection signal="mouse_exited" from="Earth/Area3D" to="." method="_on_area_3d_mouse_exited"]

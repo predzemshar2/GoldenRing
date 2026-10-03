@@ -1,0 +1,175 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7jjq36aagcfr"]
+
+[ext_resource type="Script" path="res://CharacterBody3D.gd" id="1_th85a"]
+[ext_resource type="Texture2D" uid="uid://v0arp1s4ubcb" path="res://icons/bag.png" id="2_kefic"]
+[ext_resource type="Texture2D" uid="uid://2wg64djrq42l" path="res://img/inv.png" id="3_cbj0t"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_buho4"]
+height = 1.7
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+transform = Transform3D(0.707106, 0, 0.707106, 0, 1, 0, -0.707106, 0, 0.707106, -48.1839, 1.6, -54.1669)
+visible = false
+script = ExtResource("1_th85a")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_buho4")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, -0.5)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera3D"]
+
+[node name="Label" type="Label" parent="Camera3D/CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "AAAAAAAAAAAAAAAAAA"
+
+[node name="TextureButton" type="Button" parent="Camera3D/CanvasLayer"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -156.0
+offset_right = 150.0
+offset_bottom = -6.0
+grow_vertical = 2
+scale = Vector2(0.44, 0.360001)
+theme_override_font_sizes/font_size = 56
+text = "F1"
+icon = ExtResource("2_kefic")
+expand_icon = true
+
+[node name="PanelInventory" type="Panel" parent="Camera3D/CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 131.0
+offset_top = 63.0
+offset_right = -155.0
+offset_bottom = -98.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Inv" type="Sprite2D" parent="Camera3D/CanvasLayer/PanelInventory"]
+position = Vector2(435.5, 242)
+scale = Vector2(1.2753, 1.32044)
+texture = ExtResource("3_cbj0t")
+
+[node name="GridContainer" type="GridContainer" parent="Camera3D/CanvasLayer/PanelInventory"]
+custom_minimum_size = Vector2(500, 500)
+layout_direction = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 36.0
+offset_top = 36.0
+offset_right = 5.0
+offset_bottom = 49.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 1
+theme_override_constants/v_separation = 2
+columns = 8
+
+[node name="Button" type="Button" parent="Camera3D/CanvasLayer/PanelInventory/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+text = "Сумка"
+icon = ExtResource("2_kefic")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="Button2" type="Button" parent="Camera3D/CanvasLayer/PanelInventory/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+text = "Сумка"
+icon = ExtResource("2_kefic")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="Button3" type="Button" parent="Camera3D/CanvasLayer/PanelInventory/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+text = "Сумка"
+icon = ExtResource("2_kefic")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="Button4" type="Button" parent="Camera3D/CanvasLayer/PanelInventory/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+text = "Сумка"
+icon = ExtResource("2_kefic")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="Button5" type="Button" parent="Camera3D/CanvasLayer/PanelInventory/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+text = "Сумка"
+icon = ExtResource("2_kefic")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="Button6" type="Button" parent="Camera3D/CanvasLayer/PanelInventory/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+text = "Сумка"
+icon = ExtResource("2_kefic")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="Button7" type="Button" parent="Camera3D/CanvasLayer/PanelInventory/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+text = "Сумка"
+icon = ExtResource("2_kefic")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="Button8" type="Button" parent="Camera3D/CanvasLayer/PanelInventory/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+text = "Сумка"
+icon = ExtResource("2_kefic")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="Button9" type="Button" parent="Camera3D/CanvasLayer/PanelInventory/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+text = "Сумка"
+icon = ExtResource("2_kefic")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="Button10" type="Button" parent="Camera3D/CanvasLayer/PanelInventory/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+text = "Сумка"
+icon = ExtResource("2_kefic")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[connection signal="pressed" from="Camera3D/CanvasLayer/TextureButton" to="." method="_on_texture_button_pressed"]
