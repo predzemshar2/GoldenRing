@@ -17,7 +17,7 @@ func _ready():
 	if not ship or not cinematic_camera or not landing_point or not player:
 		push_error("Настрой экспортные переменные в SceneController!")
 		return
-
+	Game.speak("Приветики, земляне!")
 	player.process_mode = PROCESS_MODE_DISABLED  # отключаем игрока до конца заставки
 	cinematic_camera.current = true  # делаем камеру активной
 
@@ -70,4 +70,20 @@ func _start_gameplay():
 	player.process_mode = Node.PROCESS_MODE_INHERIT
 	# Если у игрока своя камера — активируй её, а cinematic_camera можно отключить
 	# cinematic_camera.current = false
+func play_tts_text(text: String):
+	var url = "https://tts-api.example.com/v1/tts?text=" + text.uri_encode() + "&lang=ru"
+	var http = HTTPRequest.new()
+	add_child(http)
+	http.request(url)
+	http.request_completed.connect(_on_http_completed)
+
+func _on_http_completed(result, response_code, headers, body):
+	if response_code == 200 and body.size() > 0:
+		var file = FileAccess.open("user://temp_speech.mp3", FileAccess.WRITE)
+		file.store_buffer(body)
+		file.close()
+		$"../AudioStreamPlayer".stream = load("user://temp_speech.mp3")
+		$"../AudioStreamPlayer".play()
+	else:
+		print("response_code:",response_code)
 

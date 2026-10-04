@@ -1,11 +1,52 @@
-[gd_scene load_steps=5 format=3 uid="uid://c7jjq36aagcfr"]
+[gd_scene load_steps=12 format=3 uid="uid://c7jjq36aagcfr"]
 
 [ext_resource type="Script" path="res://CharacterBody3D.gd" id="1_th85a"]
 [ext_resource type="Texture2D" uid="uid://v0arp1s4ubcb" path="res://icons/bag.png" id="2_kefic"]
 [ext_resource type="Texture2D" uid="uid://2wg64djrq42l" path="res://img/inv.png" id="3_cbj0t"]
+[ext_resource type="Texture2D" uid="uid://cjotptj68grdh" path="res://icons/ino.jpg" id="4_g3oyp"]
+[ext_resource type="Texture2D" uid="uid://du8cd8kend6wy" path="res://icons/ino.png" id="5_snoe1"]
+[ext_resource type="Texture2D" uid="uid://cxdwx305ylrp" path="res://icons/rob.png" id="6_60hkf"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_buho4"]
 height = 1.7
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ujm6"]
+atlas = ExtResource("4_g3oyp")
+region = Rect2(61, 21, 333, 385)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mu5xx"]
+atlas = ExtResource("5_snoe1")
+region = Rect2(53, 27, 358, 385)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_psws6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ujm6")
+}],
+"loop": true,
+"name": &"clothes",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mu5xx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_phase"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_60hkf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
 transform = Transform3D(0.707106, 0, 0.707106, 0, 1, 0, -0.707106, 0, 0.707106, -48.1839, 1.6, -54.1669)
@@ -16,7 +57,7 @@ script = ExtResource("1_th85a")
 shape = SubResource("CapsuleShape3D_buho4")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, -0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.468684, -0.5)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera3D"]
 
@@ -39,8 +80,8 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_top = -156.0
-offset_right = 150.0
-offset_bottom = -6.0
+offset_right = 198.0
+offset_bottom = 50.0
 grow_vertical = 2
 scale = Vector2(0.44, 0.360001)
 theme_override_font_sizes/font_size = 56
@@ -170,5 +211,16 @@ icon = ExtResource("2_kefic")
 icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
+
+[node name="InoAnimatedSprite2D" type="AnimatedSprite2D" parent="Camera3D/CanvasLayer"]
+position = Vector2(67, 583.729)
+scale = Vector2(0.20524, 0.20524)
+sprite_frames = SubResource("SpriteFrames_psws6")
+animation = &"clothes"
+
+[node name="RobAnimatedSprite2D" type="AnimatedSprite2D" parent="Camera3D/CanvasLayer"]
+position = Vector2(1077, 583.729)
+scale = Vector2(0.20524, 0.20524)
+sprite_frames = SubResource("SpriteFrames_phase")
 
 [connection signal="pressed" from="Camera3D/CanvasLayer/TextureButton" to="." method="_on_texture_button_pressed"]

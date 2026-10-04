@@ -15,6 +15,10 @@ run/main_scene="res://world.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://icon.svg"
 
+[audio]
+
+general/text_to_speech=true
+
 [autoload]
 
 Game="*res://game.gd"

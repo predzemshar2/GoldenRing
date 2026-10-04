@@ -8277,6 +8277,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -121.277, -7.62939e-06, 7.226
 stream = ExtResource("16_oxxif")
 autoplay = true
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
 [connection signal="input_event" from="bench/Area3D_clothes" to="bench/Area3D_clothes" method="_on_input_event"]
 [connection signal="mouse_entered" from="bench/Area3D_clothes" to="bench/Area3D_clothes" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="bench/Area3D_clothes" to="bench/Area3D_clothes" method="_on_mouse_exited"]
