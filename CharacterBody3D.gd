@@ -55,4 +55,12 @@ func msg(text):
 
 
 func _on_texture_button_pressed():
+	var i=0
+	for btn in $Camera3D/CanvasLayer/PanelInventory/GridContainer.get_children():
+		if i>= Game.inventory.size():
+			btn.visible=false
+		else:
+			btn.text = Game.inventory[i]
+			btn.visible=true
+			i+=1
 	PanelInventory.visible = not PanelInventory.visible 

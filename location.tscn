@@ -89,21 +89,21 @@ material = SubResource("StandardMaterial3D_tovgi")
 [node name="forester_house2" parent="." instance=ExtResource("3_rn4vn")]
 transform = Transform3D(0.926529, 0, 0.376224, 0, 1, 0, -0.376224, 0, 0.926529, -72.2021, 0.75, -84.3849)
 
-[node name="bench" parent="." instance=ExtResource("6_so7pr")]
+[node name="inv_objects_bench" parent="." instance=ExtResource("6_so7pr")]
 transform = Transform3D(0.73566, 0, 0.677351, 0, 1, 0, -0.677351, 0, 0.73566, -64.9149, 0.5, -75.0397)
 
-[node name="Area3D_clothes" type="Area3D" parent="bench"]
+[node name="Area3D_clothes" type="Area3D" parent="inv_objects_bench"]
 script = ExtResource("5_vifrg")
 inv_name = "clothes"
 
-[node name="clothes" parent="bench/Area3D_clothes" instance=ExtResource("8_8lm28")]
+[node name="clothes" parent="inv_objects_bench/Area3D_clothes" instance=ExtResource("8_8lm28")]
 transform = Transform3D(0.007, -2.32831e-10, 6.93889e-18, 0, -3.0598e-10, 0.003, -2.32831e-10, -0.007, -1.31134e-10, 0, 0.68, 0.799995)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="bench/Area3D_clothes"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="inv_objects_bench/Area3D_clothes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.767278, 0)
 shape = SubResource("BoxShape3D_qjdq7")
 
-[node name="SpotLight3D" type="SpotLight3D" parent="bench/Area3D_clothes"]
+[node name="SpotLight3D" type="SpotLight3D" parent="inv_objects_bench/Area3D_clothes"]
 transform = Transform3D(0.631804, -0.77482, 0.0218608, -0.0252203, 0.00763908, 0.999653, -0.774718, -0.632136, -0.0147148, 0, 1.43335, 0)
 visible = false
 light_color = Color(1, 1, 0, 1)
@@ -113,16 +113,17 @@ light_volumetric_fog_energy = 0.0
 spot_range = 1.59565
 spot_angle = 89.99
 
-[node name="Area3D_clothes2" type="Area3D" parent="bench"]
+[node name="Area3D_map" type="Area3D" parent="inv_objects_bench"]
 transform = Transform3D(0.854141, 0, 0.520041, 0, 1, 0, -0.520041, 0, 0.854141, -5.35883, 0.255543, -0.870445)
 script = ExtResource("5_vifrg")
 inv_name = "map"
+must_delete = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="bench/Area3D_clothes2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="inv_objects_bench/Area3D_map"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6246, 3.17042, 2.05493)
 shape = SubResource("BoxShape3D_qjdq7")
 
-[node name="SpotLight3D" type="SpotLight3D" parent="bench/Area3D_clothes2"]
+[node name="SpotLight3D" type="SpotLight3D" parent="inv_objects_bench/Area3D_map"]
 transform = Transform3D(0.664343, 0.0776123, 0.743387, 0.06312, 0.985215, -0.159269, -0.744758, 0.152732, 0.649622, -3.57815, 3.02773, 2.78185)
 light_color = Color(1, 1, 0, 1)
 light_energy = 13.299
@@ -131,11 +132,11 @@ light_volumetric_fog_energy = 0.0
 spot_range = 1.59565
 spot_angle = 89.99
 
-[node name="Sprite3D" type="Sprite3D" parent="bench/Area3D_clothes2"]
+[node name="Sprite3D" type="Sprite3D" parent="inv_objects_bench/Area3D_map"]
 transform = Transform3D(0.466579, 0, 0, 0, 0.514301, 0, 0, 0, 1.57934, -3.61015, 3.0694, 1.9817)
 texture = ExtResource("7_nsnv6")
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="bench/Area3D_clothes2"]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="inv_objects_bench/Area3D_map"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2802, -0.639872, 1.34185)
 height = 10.984
 
@@ -8279,9 +8280,9 @@ autoplay = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
-[connection signal="input_event" from="bench/Area3D_clothes" to="bench/Area3D_clothes" method="_on_input_event"]
-[connection signal="mouse_entered" from="bench/Area3D_clothes" to="bench/Area3D_clothes" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="bench/Area3D_clothes" to="bench/Area3D_clothes" method="_on_mouse_exited"]
-[connection signal="input_event" from="bench/Area3D_clothes2" to="bench/Area3D_clothes2" method="_on_input_event"]
-[connection signal="mouse_entered" from="bench/Area3D_clothes2" to="bench/Area3D_clothes2" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="bench/Area3D_clothes2" to="bench/Area3D_clothes2" method="_on_mouse_exited"]
+[connection signal="input_event" from="inv_objects_bench/Area3D_clothes" to="inv_objects_bench/Area3D_clothes" method="_on_input_event"]
+[connection signal="mouse_entered" from="inv_objects_bench/Area3D_clothes" to="inv_objects_bench/Area3D_clothes" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="inv_objects_bench/Area3D_clothes" to="inv_objects_bench/Area3D_clothes" method="_on_mouse_exited"]
+[connection signal="input_event" from="inv_objects_bench/Area3D_map" to="inv_objects_bench/Area3D_map" method="_on_input_event"]
+[connection signal="mouse_entered" from="inv_objects_bench/Area3D_map" to="inv_objects_bench/Area3D_map" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="inv_objects_bench/Area3D_map" to="inv_objects_bench/Area3D_map" method="_on_mouse_exited"]
