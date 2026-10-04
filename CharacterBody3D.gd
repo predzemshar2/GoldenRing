@@ -6,11 +6,13 @@ const JUMP_VELOCITY = 4.5
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var PanelInventory = $Camera3D/CanvasLayer/PanelInventory
+@onready var PanelMap = $Camera3D/CanvasLayer/PanelMap
 @onready var cam = $Camera3D
 func _ready()->void:
 #	Input.mouse_mode=Input.MOUSE_MODE_CAPTURED
 	$Camera3D/CanvasLayer/Label.text=""
 	PanelInventory.visible=false
+	PanelMap.visible=false
 var sensitivity = 0.005  # Чувствительность мыши
 @onready var camera = $Camera3D
 func _input(event):
@@ -27,6 +29,8 @@ func _input(event):
 		if event.pressed:
 			if event.keycode == KEY_F1:
 				_on_texture_button_pressed()
+			if event.keycode == KEY_F2:
+				_on_map_texture_button_2_pressed()
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
@@ -64,3 +68,11 @@ func _on_texture_button_pressed():
 			btn.visible=true
 			i+=1
 	PanelInventory.visible = not PanelInventory.visible 
+
+
+func _on_map_texture_button_2_pressed():
+	PanelMap.visible = not PanelMap.visible 
+
+
+func _on_button_pressed():
+	get_tree().change_scene_to_file("res://location.tscn")
