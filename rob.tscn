@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://debwv08smxv1r"]
+
+[ext_resource type="Script" path="res://rob.gd" id="1_7j1cc"]
+[ext_resource type="PackedScene" uid="uid://btrcuo6sxn6ym" path="res://FBX/Robert01 (2).glb" id="1_tdkyi"]
+
+[node name="rob" type="Node3D"]
+script = ExtResource("1_7j1cc")
+
+[node name="Robert01 (2)" parent="." instance=ExtResource("1_tdkyi")]
+transform = Transform3D(0.504759, 0, 0, 0, 0.565374, 0, 0, 0, 0.522905, 0, 0, 0)

@@ -5,19 +5,29 @@ extends Node3D
 @export var landing_point: Marker3D
 @export var player: CharacterBody3D
 
-@export var speed: float = 15.0
+@export var speed: float = 30.0
 @export var fade_duration: float = 0.8
 
 var is_landing: bool = true
 var tween: Tween
 var tween2: Tween
 var tween3: Tween
-
+func _input(event):
+	if event is InputEventKey:
+		if event.pressed:
+			if event.keycode == KEY_SPACE:
+				if tween:
+					tween.stop()
+				if tween2:
+					tween2.stop()
+				if tween3:
+					tween3.stop()
+				_on_landing_finished()
 func _ready():
 	if not ship or not cinematic_camera or not landing_point or not player:
 		push_error("Настрой экспортные переменные в SceneController!")
 		return
-	Game.speak("Приветики, земляне!")
+#	Game.speak("Приветики, земляне!")
 	player.process_mode = PROCESS_MODE_DISABLED  # отключаем игрока до конца заставки
 	cinematic_camera.current = true  # делаем камеру активной
 
@@ -32,11 +42,24 @@ func _ready():
 	var duration = distance / speed
 
 	tween.tween_property(ship, "global_transform:origin", target_pos, duration)
-#	tween.set_trans(Tween.TRANS_LINEAR)
-#	tween.set_ease(Tween.EASE_IN_OUT)
-#	tween.start()
 
-	tween.finished.connect(_on_landing_finished)
+	await get_tree().create_timer(duration).timeout
+	
+	var player_pos = player.global_transform.origin
+	var player_camera = player.cam
+	var camera_target_pos = player_camera.global_position  # пример позиции
+	print(camera_target_pos)
+	var move_duration = 1.5
+	
+	tween3 = create_tween()
+	tween3.tween_property(cinematic_camera, "rotation:x", 0, move_duration)
+	await get_tree().create_timer(move_duration).timeout
+	
+	tween2 = create_tween()
+	tween2.tween_property(cinematic_camera, "global_position", camera_target_pos, move_duration)
+	tween2.finished.connect(_on_landing_finished)
+#	await get_tree().create_timer(move_duration).timeout
+
 
 func _on_landing_finished():
 	is_landing = false
@@ -44,46 +67,8 @@ func _on_landing_finished():
 	_start_gameplay()
 
 func _start_gameplay():
-	# Плавно переключаем камеру — можно просто сделать другую активной
-	# Вариант 1: сразу активировать камеру игрока (если у него есть SpringArm+Camera)
-	# Вариант 2: двигать CinematicCamera к позиции игрока
-
-	var player_pos = player.global_transform.origin
-#	var camera_target_pos = Vector3(player_pos.x, player_pos.y + 5, player_pos.z - 8)  # пример позиции
 	var player_camera = player.cam
-#	var camera_target_pos = Vector3(player_pos.x, player_pos.y + 5, player_pos.z - 8)  # пример позиции
-	var camera_target_pos = player_camera.global_position  # пример позиции
-	print(camera_target_pos)
-	var move_duration = 1.5
-	
-	tween3 = create_tween()
-#	cinematic_camera.rotate_x()
-	tween3.tween_property(cinematic_camera, "rotation:x", 0, move_duration)
-	await get_tree().create_timer(move_duration).timeout
-	
-	tween2 = create_tween()
-	tween2.tween_property(cinematic_camera, "global_position", camera_target_pos, move_duration)
-#	tween.set_trans(Tween.TRANS_QUAD)
-#	tween.set_ease(Tween.EASE_OUT)
-	await get_tree().create_timer(move_duration).timeout
 	player_camera.current = true
 	player.process_mode = Node.PROCESS_MODE_INHERIT
-	# Если у игрока своя камера — активируй её, а cinematic_camera можно отключить
-	# cinematic_camera.current = false
-func play_tts_text(text: String):
-	var url = "https://tts-api.example.com/v1/tts?text=" + text.uri_encode() + "&lang=ru"
-	var http = HTTPRequest.new()
-	add_child(http)
-	http.request(url)
-	http.request_completed.connect(_on_http_completed)
-
-func _on_http_completed(result, response_code, headers, body):
-	if response_code == 200 and body.size() > 0:
-		var file = FileAccess.open("user://temp_speech.mp3", FileAccess.WRITE)
-		file.store_buffer(body)
-		file.close()
-		$"../AudioStreamPlayer".stream = load("user://temp_speech.mp3")
-		$"../AudioStreamPlayer".play()
-	else:
-		print("response_code:",response_code)
+	queue_free()
 

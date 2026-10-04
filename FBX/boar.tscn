@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cw6373k1n3xkq"]
+
+[ext_resource type="PackedScene" uid="uid://68j1o7bv1y61" path="res://FBX/boar.glb" id="1_j6pox"]
+
+[node name="BOAR" type="Node3D"]
+
+[node name="boar" parent="." instance=ExtResource("1_j6pox")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.150412, 0, 0.220392)

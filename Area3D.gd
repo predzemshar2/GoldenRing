@@ -27,7 +27,7 @@ func _on_mouse_exited():
 func _on_input_event(camera, event, position, normal, shape_idx):
 	if event is InputEventMouseButton:
 		if not Game.inventory.has(inv_name):
-			Game.inventory.append(inv_name)
+			Game.take(inv_name)
 			print(Game.inventory)
 			if must_delete:
 				queue_free()

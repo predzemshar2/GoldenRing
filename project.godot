@@ -25,7 +25,6 @@ Game="*res://game.gd"
 
 [display]
 
-window/size/mode=3
 window/stretch/mode="viewport"
 
 [filesystem]
