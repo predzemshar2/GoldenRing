@@ -79,7 +79,7 @@ var goal_descriptions ={
 		"name":"Посетить Текса Химмаш в городе Сергиев Посад!",
 		"description":" Здась мы сможем раздобыть топливный бак и получить больще информации",
 		"icon":"",
-		"need":["tank","vic2"],
+		"need":["tank"],
 	}
 }
 signal taked(inv_name)

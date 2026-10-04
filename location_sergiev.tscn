@@ -1,20 +1,18 @@
-[gd_scene load_steps=23 format=3 uid="uid://crwn16wshgon2"]
+[gd_scene load_steps=21 format=3 uid="uid://crwn16wshgon2"]
 
 [ext_resource type="PackedScene" uid="uid://c7jjq36aagcfr" path="res://character_body_3d.tscn" id="1_3jy4n"]
 [ext_resource type="Script" path="res://Area3D.gd" id="5_5bm2c"]
-[ext_resource type="PackedScene" uid="uid://b3irpiydp4o4k" path="res://FBX/clothes.fbx" id="6_hq7tn"]
 [ext_resource type="Script" path="res://loc.gd" id="8_wl2iu"]
-[ext_resource type="Texture2D" uid="uid://baeceylbumb6s" path="res://img/Yar/zap.jpg" id="9_8pk6p"]
 [ext_resource type="Script" path="res://quest.gd" id="10_pwsau"]
-[ext_resource type="Texture2D" uid="uid://bqckof11j006w" path="res://img/Yar/zap_quest.jpg" id="11_f4u4f"]
+[ext_resource type="Texture2D" uid="uid://coablw0ubfslw" path="res://img/himmash.jpg" id="11_8sy6g"]
 [ext_resource type="PackedScene" uid="uid://dmmyvvtk08rki" path="res://FBX/tree2.glb" id="12_17c6x"]
+[ext_resource type="Texture2D" uid="uid://cnacqhdb13s21" path="res://img/himmash_quest.jpg" id="13_xeu4n"]
 [ext_resource type="PackedScene" uid="uid://im6q2hs1pqvp" path="res://FBX/path_segment.glb" id="16_fq4xw"]
 [ext_resource type="PackedScene" uid="uid://bfxl28hqbv0jq" path="res://FBX/Space ship.glb" id="17_wqj2c"]
 [ext_resource type="Script" path="res://SceneController.gd" id="18_l70ss"]
 [ext_resource type="Texture2D" uid="uid://dr4m1cynmpn66" path="res://img/cloud2.png" id="19_bkdxf"]
 [ext_resource type="AudioStream" uid="uid://cph1olqg1kfp2" path="res://sound/forest-lark-and-european-robin-at-the-stream.mp3" id="20_acl1m"]
 [ext_resource type="PackedScene" uid="uid://debwv08smxv1r" path="res://rob.tscn" id="21_6ii8l"]
-[ext_resource type="PackedScene" uid="uid://cw6373k1n3xkq" path="res://FBX/boar.tscn" id="22_idgng"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b0y2d"]
 size = Vector3(300, 1, 300)
@@ -42,7 +40,7 @@ fog_density = 0.41
 [sub_resource type="SphereShape3D" id="SphereShape3D_ac7sk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qjdq7"]
-size = Vector3(0.75445, 1.12303, 0.648559)
+size = Vector3(2.07761, 1.12303, 0.648559)
 
 [node name="Location" type="Node3D"]
 
@@ -284,95 +282,92 @@ autoplay = true
 
 [node name="rob" parent="." instance=ExtResource("21_6ii8l")]
 
-[node name="BOAR" parent="." instance=ExtResource("22_idgng")]
-transform = Transform3D(-0.871361, 0, 3.71041, 0, 3.81135, 0, -3.71041, 0, -0.871361, -68.768, 0.485323, -50.054)
-visible = false
+[node name="STAFF" type="Node" parent="."]
 
-[node name="Staff_And_Quest" type="Node" parent="."]
-
-[node name="Area3D_clothes" type="Area3D" parent="Staff_And_Quest"]
+[node name="Area3D_tank" type="Area3D" parent="STAFF"]
 transform = Transform3D(0.73566, 0, 0.677351, 0, 1, 0, -0.677351, 0, 0.73566, -64.9149, 0.5, -75.0397)
 script = ExtResource("5_5bm2c")
 inv_name = "tank"
 
-[node name="clothes" parent="Staff_And_Quest/Area3D_clothes" instance=ExtResource("6_hq7tn")]
-transform = Transform3D(0.007, -2.32831e-10, 6.93889e-18, 0, -3.0598e-10, 0.003, -2.32831e-10, -0.007, -1.31134e-10, 0, 0.68, 0.799995)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Staff_And_Quest/Area3D_clothes"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="STAFF/Area3D_tank"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.767278, 0)
 shape = SubResource("BoxShape3D_qjdq7")
 
-[node name="SpotLight3D" type="SpotLight3D" parent="Staff_And_Quest/Area3D_clothes"]
-transform = Transform3D(0.631804, -0.77482, 0.0218608, -0.0252203, 0.00763908, 0.999653, -0.774718, -0.632136, -0.0147148, 0, 1.43335, 0)
+[node name="SpotLight3D" type="SpotLight3D" parent="STAFF/Area3D_tank"]
+transform = Transform3D(-0.820169, -0.551332, -0.152828, 0.217864, -0.54797, 0.807629, -0.529016, 0.629096, 0.569543, 0.0583344, 1.43335, 1.413)
 visible = false
 light_color = Color(1, 1, 0, 1)
 light_energy = 13.299
 light_indirect_energy = 1.836
 light_volumetric_fog_energy = 0.0
 spot_range = 1.59565
-spot_angle = 89.99
+spot_angle = 41.4979
 
-[node name="Area3D_loc" type="Area3D" parent="Staff_And_Quest"]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="STAFF/Area3D_tank"]
+
+[node name="Area3D_loc" type="Area3D" parent="STAFF"]
 transform = Transform3D(-0.287896, 0, 0.957662, 0, 1, 0, -0.957662, 0, -0.287896, -24.2796, 0.75554, 3.22842)
 script = ExtResource("8_wl2iu")
 loc_name = "him_mash"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Staff_And_Quest/Area3D_loc"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="STAFF/Area3D_loc"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6246, 3.17042, 2.05493)
 shape = SubResource("BoxShape3D_qjdq7")
 
-[node name="Sprite3D" type="Sprite3D" parent="Staff_And_Quest/Area3D_loc"]
+[node name="Sprite3D" type="Sprite3D" parent="STAFF/Area3D_loc"]
 transform = Transform3D(0.466579, 0, 0, 0, 0.514301, 0, 0, 0, 1.57934, -3.61015, 3.0694, 1.9817)
-texture = ExtResource("9_8pk6p")
+texture = ExtResource("11_8sy6g")
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Staff_And_Quest/Area3D_loc"]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="STAFF/Area3D_loc"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2802, -0.639872, 1.34185)
 height = 10.984
 
-[node name="Area3D_quest0" type="Area3D" parent="Staff_And_Quest"]
+[node name="QUEST" type="Node" parent="."]
+
+[node name="Area3D_quest0" type="Area3D" parent="QUEST"]
 transform = Transform3D(-0.287896, 0, 0.957662, 0, 1, 0, -0.957662, 0, -0.287896, -72.0032, 0.755544, -61.0428)
 script = ExtResource("10_pwsau")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Staff_And_Quest/Area3D_quest0"]
-transform = Transform3D(1, 0, 1.78814e-07, 0, 1, 0, -1.78814e-07, 0, 1, -5.45223, 2.44647, 2.42189)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="QUEST/Area3D_quest0"]
+transform = Transform3D(1, 0, 1.78814e-07, 0, 1, 0, -1.78814e-07, 0, 1, -5.82683, 2.44647, 2.30927)
 shape = SubResource("BoxShape3D_qjdq7")
 
-[node name="Sprite3D" type="Sprite3D" parent="Staff_And_Quest/Area3D_quest0"]
-transform = Transform3D(0.466579, 0, 0, 0, 0.514301, 0, 0, 0, 1.57934, -3.61015, 3.0694, 1.9817)
-texture = ExtResource("11_f4u4f")
+[node name="Sprite3D" type="Sprite3D" parent="QUEST/Area3D_quest0"]
+transform = Transform3D(0.68165, 0, -5.96046e-08, 0, 0.75137, 0, 1.49012e-08, 0, 2.30734, -3.61015, 3.0694, 1.98169)
+texture = ExtResource("13_xeu4n")
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Staff_And_Quest/Area3D_quest0"]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="QUEST/Area3D_quest0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2802, -0.639872, 1.34185)
 height = 10.984
 
-[node name="Area3D_quest1" type="Area3D" parent="Staff_And_Quest"]
+[node name="Area3D_quest1" type="Area3D" parent="QUEST"]
 transform = Transform3D(-0.287896, 0, 0.957662, 0, 1, 0, -0.957662, 0, -0.287896, -72.0032, 0.755544, -61.0428)
 script = ExtResource("10_pwsau")
 option = 1
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Staff_And_Quest/Area3D_quest1"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="QUEST/Area3D_quest1"]
 transform = Transform3D(1, 0, 1.78814e-07, 0, 1, 0, -1.78814e-07, 0, 1, -3.67908, 2.44647, 2.33868)
 shape = SubResource("BoxShape3D_qjdq7")
 
-[node name="Area3D_quest2" type="Area3D" parent="Staff_And_Quest"]
+[node name="Area3D_quest2" type="Area3D" parent="QUEST"]
 transform = Transform3D(-0.287896, 0, 0.957662, 0, 1, 0, -0.957662, 0, -0.287896, -72.0032, 0.755544, -61.0428)
 script = ExtResource("10_pwsau")
 option = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Staff_And_Quest/Area3D_quest2"]
-transform = Transform3D(1, 0, 1.78814e-07, 0, 1, 0, -1.78814e-07, 0, 1, -1.56341, 2.44647, 2.05601)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="QUEST/Area3D_quest2"]
+transform = Transform3D(1, 0, 1.78814e-07, 0, 1, 0, -1.78814e-07, 0, 1, -1.32882, 2.44647, 2.12652)
 shape = SubResource("BoxShape3D_qjdq7")
 
-[connection signal="input_event" from="Staff_And_Quest/Area3D_clothes" to="Staff_And_Quest/Area3D_clothes" method="_on_input_event"]
-[connection signal="mouse_entered" from="Staff_And_Quest/Area3D_clothes" to="Staff_And_Quest/Area3D_clothes" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="Staff_And_Quest/Area3D_clothes" to="Staff_And_Quest/Area3D_clothes" method="_on_mouse_exited"]
-[connection signal="input_event" from="Staff_And_Quest/Area3D_loc" to="Staff_And_Quest/Area3D_loc" method="_on_input_event"]
-[connection signal="mouse_entered" from="Staff_And_Quest/Area3D_loc" to="Staff_And_Quest/Area3D_loc" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="Staff_And_Quest/Area3D_loc" to="Staff_And_Quest/Area3D_loc" method="_on_mouse_exited"]
-[connection signal="input_event" from="Staff_And_Quest/Area3D_quest0" to="Staff_And_Quest/Area3D_quest0" method="_on_input_event"]
-[connection signal="mouse_entered" from="Staff_And_Quest/Area3D_quest0" to="Staff_And_Quest/Area3D_quest0" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="Staff_And_Quest/Area3D_quest0" to="Staff_And_Quest/Area3D_quest0" method="_on_mouse_exited"]
-[connection signal="input_event" from="Staff_And_Quest/Area3D_quest1" to="Staff_And_Quest/Area3D_quest1" method="_on_input_event"]
-[connection signal="mouse_entered" from="Staff_And_Quest/Area3D_quest1" to="Staff_And_Quest/Area3D_quest1" method="_on_mouse_entered"]
-[connection signal="input_event" from="Staff_And_Quest/Area3D_quest2" to="Staff_And_Quest/Area3D_quest2" method="_on_input_event"]
-[connection signal="mouse_entered" from="Staff_And_Quest/Area3D_quest2" to="Staff_And_Quest/Area3D_quest2" method="_on_mouse_entered"]
+[connection signal="input_event" from="STAFF/Area3D_tank" to="STAFF/Area3D_tank" method="_on_input_event"]
+[connection signal="mouse_entered" from="STAFF/Area3D_tank" to="STAFF/Area3D_tank" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="STAFF/Area3D_tank" to="STAFF/Area3D_tank" method="_on_mouse_exited"]
+[connection signal="input_event" from="STAFF/Area3D_loc" to="STAFF/Area3D_loc" method="_on_input_event"]
+[connection signal="mouse_entered" from="STAFF/Area3D_loc" to="STAFF/Area3D_loc" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="STAFF/Area3D_loc" to="STAFF/Area3D_loc" method="_on_mouse_exited"]
+[connection signal="input_event" from="QUEST/Area3D_quest0" to="QUEST/Area3D_quest0" method="_on_input_event"]
+[connection signal="mouse_entered" from="QUEST/Area3D_quest0" to="QUEST/Area3D_quest0" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="QUEST/Area3D_quest0" to="QUEST/Area3D_quest0" method="_on_mouse_exited"]
+[connection signal="input_event" from="QUEST/Area3D_quest1" to="QUEST/Area3D_quest1" method="_on_input_event"]
+[connection signal="mouse_entered" from="QUEST/Area3D_quest1" to="QUEST/Area3D_quest1" method="_on_mouse_entered"]
+[connection signal="input_event" from="QUEST/Area3D_quest2" to="QUEST/Area3D_quest2" method="_on_input_event"]
+[connection signal="mouse_entered" from="QUEST/Area3D_quest2" to="QUEST/Area3D_quest2" method="_on_mouse_entered"]

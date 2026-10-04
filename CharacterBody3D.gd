@@ -107,6 +107,8 @@ func _on_map_texture_button_2_pressed():
 		PanelMap.visible = not PanelMap.visible 
 	if Game.locations.has("zap_yar"):
 		$"Camera3D/CanvasLayer/PanelMap/ControlLocations/ButtonYar'".icon=load("res://icons/check.png")
+	if Game.locations.has("him_mash"):
+		$Camera3D/CanvasLayer/PanelMap/ControlLocations/ButtonSergiev.icon=load("res://icons/check.png")
 
 
 func _on_button_pressed():
