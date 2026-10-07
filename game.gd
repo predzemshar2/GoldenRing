@@ -30,6 +30,13 @@ var descriptions ={
 		"description":"Нужен для топлива",
 		"icon":"",
 		"-":"",
+	},
+	"planet":{
+		"id":3,
+		"name":"Схема солнечной системы",
+		"description":"Нужна для навигации в космосе",
+		"icon":"",
+		"-":"",
 	}
 }
 var location_descriptions ={
@@ -44,6 +51,13 @@ var location_descriptions ={
 		"id":2,
 		"name":"Текса Химмаш в городе Сергиев Посад",
 		"description":"это научно-производственная организация, которая специализируется на производстве оборудования для химической промышленности",
+		"icon":"",
+		"-":"",
+	},
+	"plan_vlad":{
+		"id":3,
+		"name":"Владимирский Планетарий",
+		"description":"Планетарий для приёма посетителей с множеством космических экспонатов",
 		"icon":"",
 		"-":"",
 	}
@@ -64,7 +78,15 @@ var quests ={
 		"icon":"",
 		"options":["Стройматериалы","Металлургическую","Хим.продукцию"], # 0,1 or 2
 		"right":2,
-	}
+	},
+	"plan_vlad":{
+		"id":3,
+		"name":"Викторина Планетария",
+		"description":"Какая планета 5-я по счёту от солнца?",
+		"icon":"",
+		"options":["Венера","Сатурн","Юпитер"], # 0,1 or 2
+		"right":2,
+	},
 }
 var goal_descriptions ={
 	"zap_yar":{
@@ -80,6 +102,13 @@ var goal_descriptions ={
 		"description":" Здась мы сможем раздобыть топливный бак и получить больще информации",
 		"icon":"",
 		"need":["tank"],
+	},
+	"plan_vlad":{
+		"id":3,
+		"name":"Посетить Владимирский Планетарий в городе Владимир!",
+		"description":" Здась мы сможем изучить Солнечную систему и узнать об этом месте",
+		"icon":"",
+		"need":["planet"],
 	}
 }
 signal taked(inv_name)
@@ -89,14 +118,20 @@ signal visited(loc_name)
 signal take_goal(loc_name)
 # Called when the node enters the scene tree for the first time.
 #@onready var voices = DisplayServer.tts_get_voices_for_language("ru")
+
+
 func quest_complete(loc_name):
 	quests_completed.append(loc_name)
 	quest_completed.emit(loc_name)
+
+
 func take(inv_name):
 	inventory.append(inv_name)
 	speak("Капитан! Получен предмет " + descriptions[inv_name]["name"] + " " + descriptions[inv_name]["description"])
 	taked.emit(inv_name)
 	check_completed()
+
+
 func visit(loc_name):
 	locations.append(loc_name)
 	speak("Капитан! Мы посещаем " + location_descriptions[loc_name]["name"] ) #+ " " + location_descriptions[loc_name]["description"])
@@ -105,9 +140,13 @@ func visit(loc_name):
 		goals.append(loc_name)
 		take_goal.emit()
 		_on_new_goal()
+
+
 func _on_new_goal():
 	speak("Получена новая цель: ")
 #	 +goal_descriptions[cur_location]["name"]+" "+goal_descriptions[cur_location]["description"])
+
+
 func check_completed():
 	var x = true
 	for g in goal_descriptions[cur_location]["need"]:
@@ -117,10 +156,13 @@ func check_completed():
 		goals_completed.append(cur_location)
 		speak("Отлично!  Мы прошли локацию, выберите на карте следующую (нажми ф 2)")
 		completed.emit(cur_location)
+
+
 func _ready():
 	pass
 #	print(voices)
-	
+
+
 func speak(text):
 	var voices = DisplayServer.tts_get_voices_for_language("ru")
 	print(voices)

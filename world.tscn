@@ -1,11 +1,11 @@
 [gd_scene load_steps=16 format=3 uid="uid://dsj3yo6th8vy4"]
 
 [ext_resource type="Script" path="res://World.gd" id="1_23l3t"]
-[ext_resource type="Texture2D" uid="uid://bbjmvl2lyn65g" path="res://img/sun.webp" id="2_4h8ui"]
-[ext_resource type="Texture2D" uid="uid://dobayystaxxck" path="res://img/merk.webp" id="3_addyf"]
-[ext_resource type="Texture2D" uid="uid://bgs3vr7sp8u8a" path="res://img/earth.webp" id="4_st5qc"]
-[ext_resource type="Texture2D" uid="uid://b3kwufxvd832p" path="res://img/sky.webp" id="6_b34nn"]
-[ext_resource type="Texture2D" uid="uid://chhfoylg3eq0h" path="res://panel.webp" id="6_qljj1"]
+[ext_resource type="Texture2D" uid="uid://c5nbajmumcdwo" path="res://img/sun.webp" id="2_4h8ui"]
+[ext_resource type="Texture2D" uid="uid://5xii4wfgur74" path="res://img/merk.webp" id="3_addyf"]
+[ext_resource type="Texture2D" uid="uid://bbu57lh3odfd3" path="res://img/earth.webp" id="4_st5qc"]
+[ext_resource type="Texture2D" uid="uid://d1ohyuujunog6" path="res://img/sky.webp" id="6_b34nn"]
+[ext_resource type="Texture2D" uid="uid://j7jnusqrhbal" path="res://panel.webp" id="6_qljj1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5jylj"]
 albedo_texture = ExtResource("2_4h8ui")

@@ -1,18 +1,18 @@
 [gd_scene load_steps=19 format=3 uid="uid://c7jjq36aagcfr"]
 
 [ext_resource type="Script" path="res://CharacterBody3D.gd" id="1_th85a"]
-[ext_resource type="Texture2D" uid="uid://v0arp1s4ubcb" path="res://icons/bag.png" id="2_kefic"]
-[ext_resource type="Texture2D" uid="uid://2wg64djrq42l" path="res://img/inv.png" id="3_cbj0t"]
-[ext_resource type="Texture2D" uid="uid://ulj3rbhwo0wo" path="res://icons/map.webp" id="3_ttuk5"]
-[ext_resource type="Texture2D" uid="uid://cjotptj68grdh" path="res://icons/ino.jpg" id="4_g3oyp"]
-[ext_resource type="Texture2D" uid="uid://du8cd8kend6wy" path="res://icons/ino.png" id="5_snoe1"]
-[ext_resource type="Texture2D" uid="uid://cmb7fsda6ejks" path="res://img/map.png" id="5_xv68a"]
-[ext_resource type="Texture2D" uid="uid://cxdwx305ylrp" path="res://icons/rob.png" id="6_60hkf"]
-[ext_resource type="Texture2D" uid="uid://bcv6r84jv1dow" path="res://icons/circle.png" id="6_uci8n"]
-[ext_resource type="Texture2D" uid="uid://dggn8x4e3jn5l" path="res://icons/check.png" id="7_i6wkw"]
-[ext_resource type="AudioStream" uid="uid://c4ftcnid08pat" path="res://sound/arfa (1).mp3" id="11_125e3"]
-[ext_resource type="AudioStream" uid="uid://dmgvwb3h5vg5b" path="res://sound/choose (1).mp3" id="12_kyi2l"]
-[ext_resource type="AudioStream" uid="uid://bmp21wkb7qfka" path="res://sound/msg (1).mp3" id="13_et61x"]
+[ext_resource type="Texture2D" uid="uid://dr8b5x844yqmn" path="res://icons/bag.png" id="2_kefic"]
+[ext_resource type="Texture2D" uid="uid://dru3so5ibmfio" path="res://img/inv.png" id="3_cbj0t"]
+[ext_resource type="Texture2D" uid="uid://cc2l00c2if1ow" path="res://icons/map.webp" id="3_ttuk5"]
+[ext_resource type="Texture2D" uid="uid://7oa8va6r1gsq" path="res://icons/ino.jpg" id="4_g3oyp"]
+[ext_resource type="Texture2D" uid="uid://bm3m2gb44x3bk" path="res://icons/ino.png" id="5_snoe1"]
+[ext_resource type="Texture2D" uid="uid://b77qx7s4vym7o" path="res://img/map.png" id="5_xv68a"]
+[ext_resource type="Texture2D" uid="uid://cwjhqg4g0d8vb" path="res://icons/rob.png" id="6_60hkf"]
+[ext_resource type="Texture2D" uid="uid://bcd8uv7sutadm" path="res://icons/circle.png" id="6_uci8n"]
+[ext_resource type="Texture2D" uid="uid://b564yfmvltx18" path="res://icons/check.png" id="7_i6wkw"]
+[ext_resource type="AudioStream" uid="uid://bmrrp50mlnby8" path="res://sound/arfa (1).mp3" id="11_125e3"]
+[ext_resource type="AudioStream" uid="uid://dq4ea1qwt8ljc" path="res://sound/choose (1).mp3" id="12_kyi2l"]
+[ext_resource type="AudioStream" uid="uid://cyt7kg82vw2m2" path="res://sound/msg (1).mp3" id="13_et61x"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_buho4"]
 height = 1.7
@@ -455,6 +455,18 @@ icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
 
+[node name="ButtonVladimir" type="Button" parent="Camera3D/CanvasLayer/PanelMap/ControlLocations"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+offset_left = 478.0
+offset_top = 325.0
+offset_right = 522.0
+offset_bottom = 369.0
+icon = ExtResource("6_uci8n")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
 [node name="PanelGoals" type="Panel" parent="Camera3D/CanvasLayer"]
 visible = false
 anchors_preset = 15
@@ -622,3 +634,4 @@ stream = ExtResource("13_et61x")
 [connection signal="pressed" from="Camera3D/CanvasLayer/GoalsTextureButton3" to="." method="_on_goals_texture_button_3_pressed"]
 [connection signal="pressed" from="Camera3D/CanvasLayer/PanelMap/ControlLocations/ButtonYar'" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Camera3D/CanvasLayer/PanelMap/ControlLocations/ButtonSergiev" to="." method="_on_button_sergiev_pressed"]
+[connection signal="pressed" from="Camera3D/CanvasLayer/PanelMap/ControlLocations/ButtonVladimir" to="." method="_on_button_vladimir_pressed"]

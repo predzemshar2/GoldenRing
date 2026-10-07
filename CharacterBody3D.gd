@@ -9,6 +9,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var PanelMap = $Camera3D/CanvasLayer/PanelMap
 @onready var PanelGoals = $Camera3D/CanvasLayer/PanelGoals
 @onready var cam = $Camera3D
+
+
 func _ready()->void:
 #	Input.mouse_mode=Input.MOUSE_MODE_CAPTURED
 	$Camera3D/CanvasLayer/Label.text=""
@@ -22,17 +24,29 @@ func _ready()->void:
 		_on_clothes()
 	Game.visited.connect(_on_visit )
 	$Camera3D/CanvasLayer/MapTextureButton2.visible=Game.inventory.has("map")
+
+
 var sensitivity = 0.005  # Чувствительность мыши
 @onready var camera = $Camera3D
+
+
 func _on_complete_quest(loc_name):
 	$AudioStreamPlayer3D_complete_quest.play()
+
+
 func _on_complete(loc_name):
 	print("_on_complete:",loc_name)
+
+
 	$AudioStreamPlayer3D.play()
 func _on_visit(loc_name):
 	print("visit:",loc_name)
+
+
 func _on_clothes():
 	$Camera3D/CanvasLayer/InoAnimatedSprite2D.animation="clothes"
+
+
 func _on_take(inv_name):
 	print("take:",inv_name)
 	$AudioStreamPlayer3D_take.play()
@@ -40,6 +54,8 @@ func _on_take(inv_name):
 		_on_clothes()
 	if inv_name=="map":
 		$Camera3D/CanvasLayer/MapTextureButton2.visible=true
+
+
 func _input(event):
 	if event is InputEventMouseMotion:
 		# Поворачиваем голову персонажа (вокруг оси Y)
@@ -56,6 +72,8 @@ func _input(event):
 				_on_texture_button_pressed()
 			if event.keycode == KEY_F2:
 				_on_map_texture_button_2_pressed()
+
+
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
@@ -82,8 +100,9 @@ func _physics_process(delta):
 	
 	Game.marker_for_robot = camera_point_1m_ahead 
 #	Game.marker_for_robot = $Camera3D/Marker3D.global_position
-
 	move_and_slide()
+
+
 func msg(text):
 	$Camera3D/CanvasLayer/Label.modulate.a=1
 	$Camera3D/CanvasLayer/Label.text=text
@@ -133,3 +152,7 @@ func _on_goals_texture_button_3_pressed():
 
 func _on_button_sergiev_pressed():
 	get_tree().change_scene_to_file("res://location_sergiev.tscn")
+
+
+func _on_button_vladimir_pressed():
+	get_tree().change_scene_to_file("res://location_vladimir.tscn")
