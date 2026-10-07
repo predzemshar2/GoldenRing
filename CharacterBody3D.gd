@@ -128,6 +128,8 @@ func _on_map_texture_button_2_pressed():
 		$"Camera3D/CanvasLayer/PanelMap/ControlLocations/ButtonYar'".icon=load("res://icons/check.png")
 	if Game.locations.has("him_mash"):
 		$Camera3D/CanvasLayer/PanelMap/ControlLocations/ButtonSergiev.icon=load("res://icons/check.png")
+	if Game.locations.has("plan_vlad"):
+		$Camera3D/CanvasLayer/PanelMap/ControlLocations/ButtonVladimir.icon=load("res://icons/check.png")
 
 
 func _on_button_pressed():
